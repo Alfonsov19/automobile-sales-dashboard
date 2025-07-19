@@ -6,6 +6,7 @@ from dash import dcc, html
 from dash.dependencies import Input, Output
 import pandas as pd
 import plotly.express as px
+import os 
 
 # Load data once and cache
 def load_data():
@@ -141,4 +142,5 @@ def update_dashboard(selected_statistics, selected_year):
     return [html.Div("Please select a valid report type and year.")]
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 8050))
+    app.run(host="0.0.0.0", port=port, debug=True)
